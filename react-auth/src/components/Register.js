@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef} from 'react';
-import axios from './api/axios';
+import axios from '../api/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -104,10 +104,10 @@ const Register  = () =>{
               { userFocus &&  user && !userValid ?
             <p id="uidnote" className={userFocus &&  user && !userValid ? "instructions" : "offscreen"}>
                          
-                            4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed.
-                        </p> : null
+                 4 to 24 characters.<br />
+                 Must begin with a letter.<br />
+                Letters, numbers, underscores, hyphens allowed.
+            </p> : null
             }
             <label htmlFor="password">Password: </label>
             <input type="password" id="password" required onChange={(e)=> setPwd(e.target.value)}
