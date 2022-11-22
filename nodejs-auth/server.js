@@ -7,6 +7,8 @@ const corOptions = require('./config/corsOptions');
 const credential = require('./middleware/credentials');
 const mongoose = require('mongoose')
 const registerRouter = require('./routes/registers');
+const logoutRoute = require('./routes/logout');
+const login = require('./routes/login')
 const PORT = process.env.PORT || 3500;
 
 app.use(credential)
@@ -17,13 +19,17 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/auth-user').
-then(console.log('connection'))
+mongoose.connect('mongodb://localhost:27017/auth-user')
+.then(console.log('connection'))
 .catch((err)=>{console.log(err)});
 
 
-
 app.use('/register', registerRouter);
+
+app.use('/logout', logoutRoute);
+
+app.use('/auth', login)
+
 app.listen(PORT, ()=>{
     console.log(`server running on port ${PORT}`);
 })
